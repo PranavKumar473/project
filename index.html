@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: #D09CFA; 
+        }
+    </style>
+</head>
+<body>
+    <iframe width="930" height="523" src="https://www.youtube.com/embed/UaukXy49af8"></iframe><br><br>
+    
+    <button type="button" class="btn btn-danger" id="deleteButton" onclick="fun1()">Delete</button>
+    <button  type="button" class="btn btn-success" id="retrieveButton" onclick="fun2()">Retrieve</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const deleteButton = document.getElementById("deleteButton");
+    const retrieveButton = document.getElementById("retrieveButton");
+
+    deleteButton.addEventListener("click", function() {
+        document.cookie = "cookie1=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "cookie2=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+        const cookieData = document.cookie;
+        localStorage.setItem("deletedCookies", cookieData);
+        
+        console.log("Cookies deleted and data stored in local storage.");
+    });
+
+    retrieveButton.addEventListener("click", function() {
+        const deletedCookies = localStorage.getItem("deletedCookies");
+        if (deletedCookies) {
+            document.cookie = deletedCookies;
+            localStorage.removeItem("deletedCookies");
+            console.log("Deleted cookies retrieved from local storage and set as cookies.");
+        } else {
+            console.log("No deleted cookies found in local storage.");
+        }
+    });
+});
+function fun1()
+{
+    alert("Cookies will be deleted and data will be stored in local storage.")
+}
+
+function fun2()
+{
+    alert(" Deleted Cookies will be retrieved from the local storage")
+}
+    </script>
+   
+</body>
+</html>
